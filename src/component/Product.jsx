@@ -3,7 +3,7 @@ import {useParams} from 'react-router';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 
-function Product() {
+const Product =()=> {
   
     const {id} = useParams();
     const [product, setProduct] = useState([]);
@@ -12,18 +12,22 @@ function Product() {
     useEffect(()=>{
         const getProduct = async ()=>{
             setLoading(true);
-            const response = await fetch(`https://fakestoreapi.com/products/${{id}}`);
+            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
             setProduct(await response.json());
             setLoading(false);
         }
         getProduct();
-     }, []);
+
+     
+    }, []);
 
      const Loading = ()=>{
         return(
             <>
-           
-           <div className='col-md-6' style={{lineHeight:2}}>
+
+            
+       
+            <div className='col-md-6' style={{lineHeight:2}}>
             <Skeleton height={400} />
            </div>
 
@@ -36,7 +40,7 @@ function Product() {
             <Skeleton height={50} width={100} />
             <Skeleton height={50} width={100} style={{marginLeft:6}} />
 
-           </div>
+           </div> 
 
 
             
@@ -44,7 +48,7 @@ function Product() {
         )
      }
 
-     const ShowProduct = () =>{
+     const ShowProduct = ()=> {
         return (
             <>
             <div className='col-md-6'>
@@ -75,9 +79,6 @@ function Product() {
                 <NavLink to="/cart" className='btn btn-outline-dark ms-2 px-3 py-2'>
                     Go to cart
                 </NavLink>
-
-                 
-
             </div>
             </>
         )
